@@ -20,7 +20,7 @@ app.use('/test', testRouter); // '/test' パスに対するルートを設定
 // ホームルート
 app.get('/', (req, res) => {
   res.render('index', {
-    message: 'ホームファイル'
+    message: 'ホームファイルですよ'
   });
 });
 

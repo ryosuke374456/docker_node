@@ -10,9 +10,16 @@ services:
       - "3000:3000"
     command: npm run dev
   mysql:
-    build: ./mysql/db    #Dockerfileからビルドすることを示す
-    volumes:
-      - ./mysql/DB:/docker-entrypoint-initdb.d  #初期データをマウントする場所
-    image: original_mysql_world # イメージの名前
+    image: mysql:latest
+    container_name: mysql_container
+    restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=ryosuke0802   #コンテナ内のMySQLを起動する際のパスワードを設定
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/db:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/mysql/my.cnf

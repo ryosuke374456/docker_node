@@ -9,17 +9,16 @@ services:
     ports:
       - "3000:3000"
     command: npm run dev
-  mysql:
-    image: mysql:latest
-    container_name: mysql_container
-    restart: always
+  db:
+    image: mariadb:latest  # ← MySQL から MariaDB に変更
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mydb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MARIADB_ROOT_PASSWORD: root  # ← MYSQL_ → MARIADB_ に変更
+      MARIADB_DATABASE: mydb
+      MARIADB_USER: user
+      MARIADB_PASSWORD: password
     ports:
       - "3306:3306"
     volumes:
-      - ./mysql/db:/var/lib/mysql
-      - ./mysql/my.cnf:/etc/mysql/my.cnf
+      - db_data:/var/lib/mysql
+volumes:
+  db_data:

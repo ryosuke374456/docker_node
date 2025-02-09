@@ -12,7 +12,8 @@ RUN npm install --only=development
 RUN npm install typescript
 
 # MySQLをインストール
-RUN apt-get update && apt-get install -y mariadb-server
+RUN apt-get update && apt-get install -y mariadb-server && rm -rf /var/lib/apt/lists/*
+
 # MySQLの初期化用設定
 RUN mkdir -p /etc/mysql/conf.d
 COPY my.cnf /etc/mysql/conf.d/my.cnf

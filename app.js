@@ -16,11 +16,13 @@ app.set('view engine', 'ejs'); // ビューエンジンをEJSに設定
 // ルーティング設定
 const testRouter = require('./routes/test'); // test.jsをインポート
 app.use('/test', testRouter); // '/test' パスに対するルートを設定
+const devlopmentRouter = require('./routes/devlopment'); // devlopment.jsをインポート
+app.use('/devlopment', devlopmentRouter); // '/devlopment' パスに対するルートを設定
 
 // ホームルート
 app.get('/', (req, res) => {
   res.render('index', {
-    message: 'ホームファイルですよ'
+    message: 'this is homepage'
   });
 });
 
